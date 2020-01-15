@@ -1,4 +1,4 @@
-# Strudy Case of KrakenD
+# Study case of KrakenD
 
 Study case of Krankend API Gateway + Docker.
 
