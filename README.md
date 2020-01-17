@@ -11,6 +11,14 @@ Study case of Krankend API Gateway + Docker.
 
 **Krakend.json** contains the structure to use the Gateway. It was generated [here](https://designer.krakend.io/#!).
 
+- Build fake-api with Docker
+
+```sh
+cd backend
+eval $(minikube docker-env)
+docker build -t fake-api -f Dockerfile .
+```
+
 ```sh
 docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend run --config /etc/krakend/krakend.json
 ```
