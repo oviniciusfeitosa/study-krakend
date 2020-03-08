@@ -19,6 +19,18 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_1.8.1-
  && sudo dpkg -i minikube_1.8.1-0_amd64.deb
 ```
 
+- Start a cluster using virtualbox driver
+
+```sh
+minikube start --driver=virtualbox
+```
+
+- Define virtualbox as default driver for minikube
+
+```sh
+minikube config set driver virtualbox
+```
+
 - Build fake-api with Docker
 
 ```sh
@@ -37,3 +49,4 @@ docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend run --config /
 - [KrakenD](https://www.krakend.io)
 - [Docker KrakenD](https://github.com/devopsfaith/krakend)
 - [KrakenD + Kubernetes](https://www.krakend.io/blog/krakend-on-kubernetes)
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/linux)
