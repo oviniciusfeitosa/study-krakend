@@ -1,22 +1,58 @@
 
 # Study case of KrakenD
 
-Study case of Krankend API Gateway + Docker.
+Study case of Krankend API Gateway + Docker + Kubernetes.
 
 ## Dependencies
 
 - Docker
+- Kubernetes
 
 ## How to
 
 **Krakend.json** contains the structure to use the Gateway. It was generated [here](https://designer.krakend.io/#!).
 
-### Local Backend - fake-api with Docker
+
+- Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux)
+
+- Install Minikube
+
+```sh
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_1.8.1-0_amd64.deb \
+ && sudo dpkg -i minikube_1.8.1-0_amd64.deb
+```
+
+- Start a cluster using virtualbox driver
+
+```sh
+minikube start --driver=virtualbox
+```
+
+- Define virtualbox as default driver for minikube
+
+```sh
+minikube config set driver virtualbox
+```
+
+- Build fake-api with Docker
 
 ```sh
 cd backend
 eval $(minikube docker-env)
 docker build -t fake-api -f Dockerfile .
+```
+
+- Build KrakenD image
+
+```sh
+# in root folder
+docker build -t k8s-krakend:0.0.1 .
+```
+
+- Deploy the backend API in k8s
+
+```sh
+
 ```
 
 ```sh
@@ -29,3 +65,4 @@ docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend run --config /
 - [KrakenD](https://www.krakend.io)
 - [Docker KrakenD](https://github.com/devopsfaith/krakend)
 - [KrakenD + Kubernetes](https://www.krakend.io/blog/krakend-on-kubernetes)
+- [Minikube](https://minikube.sigs.k8s.io/docs/start/linux)
