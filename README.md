@@ -12,6 +12,8 @@ Study case of Krankend API Gateway + Docker + Kubernetes.
 
 **Krakend.json** contains the structure to use the Gateway. It was generated [here](https://designer.krakend.io/#!).
 
+- Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-linux)
+
 - Install Minikube
 
 ```sh
@@ -37,6 +39,18 @@ minikube config set driver virtualbox
 cd backend
 eval $(minikube docker-env)
 docker build -t fake-api -f Dockerfile .
+```
+
+- Build KrakenD image
+
+```sh
+# in root folder
+docker build -t k8s-krakend:0.0.1 .
+```
+
+- Deploy the backend API in k8s
+
+```sh
 
 ```
 
