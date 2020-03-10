@@ -22,10 +22,16 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_1.8.1-
  && sudo dpkg -i minikube_1.8.1-0_amd64.deb
 ```
 
+- Set NO_PROXY environments
+
+```sh
+export NO_PROXY=localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24
+```
+
 - Start a cluster using virtualbox driver
 
 ```sh
-minikube start --vm-driver=virtualbox
+minikube start -p minikube-cluster --vm-driver=virtualbox
 ```
 
 - Define virtualbox as default driver for minikube
@@ -68,8 +74,8 @@ kubectl config use-context minikube
 
 ```sh
 kubectl run fake-api --image=fake-api:latest --port=8080 --image-pull-policy='Never'
+kubectl expose deployment fake-api --type=NodePort
 ```
-
 
 ## References
 
@@ -79,3 +85,5 @@ kubectl run fake-api --image=fake-api:latest --port=8080 --image-pull-policy='Ne
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/linux)
 - [kubectl](https://kubernetes.io/docs/setup/learning-environment/minikube/#interacting-with-your-cluster)
 - [Proxy Issues](https://minikube.sigs.k8s.io/docs/reference/networking/proxy)
+- [Kubernetes - Access Cluster](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster)
+- [Kubernetes - Hello Minikube](https://kubernetes.io/docs/tutorials/hello-minikube)
