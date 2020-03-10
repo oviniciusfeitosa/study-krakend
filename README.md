@@ -77,6 +77,19 @@ kubectl run fake-api --image=fake-api:latest --port=8080 --image-pull-policy='Ne
 kubectl expose deployment fake-api --type=NodePort
 ```
 
+- Register Deployment and Service definition
+
+```sh
+kubectl create -f deployment-definition.yaml
+kubectl create -f service-definition.yaml
+```
+
+- Test service with url assigned
+
+```sh
+minikube service krakend-service
+```
+
 ## References
 
 - [KrakenD](https://www.krakend.io)
@@ -87,3 +100,4 @@ kubectl expose deployment fake-api --type=NodePort
 - [Proxy Issues](https://minikube.sigs.k8s.io/docs/reference/networking/proxy)
 - [Kubernetes - Access Cluster](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster)
 - [Kubernetes - Hello Minikube](https://kubernetes.io/docs/tutorials/hello-minikube)
+- [Issue: "kubectl error: failed to discover supported resources forbidden"](https://github.com/kubernetes/kubernetes/issues/24903#issuecomment-274319080)
