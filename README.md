@@ -25,7 +25,7 @@ curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_1.8.1-
 - Start a cluster using virtualbox driver
 
 ```sh
-minikube start --driver=virtualbox
+minikube start --vm-driver=virtualbox
 ```
 
 - Define virtualbox as default driver for minikube
@@ -49,14 +49,25 @@ docker build -t fake-api -f Dockerfile .
 docker build -t k8s-krakend:0.0.1 .
 ```
 
+- Get kubernetes info
+
+```sh
+cat ~/.kube/config
+```
+
+- The `minikube start` command creates a **kubectl context** called “minikube”. To switch to **minikube** context use the command below.
+
+```sh
+# Optional:
+# kubectl config delete-context minikube
+
+kubectl config use-context minikube
+```
+
 - Deploy the backend API in k8s
 
 ```sh
-
-```
-
-```sh
-docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend run --config /etc/krakend/krakend.json
+kubectl run fake-api --image=fake-api:latest --port=8080 --image-pull-policy='Never'
 ```
 
 
@@ -66,3 +77,5 @@ docker run -p 8080:8080 -v $PWD:/etc/krakend/ devopsfaith/krakend run --config /
 - [Docker KrakenD](https://github.com/devopsfaith/krakend)
 - [KrakenD + Kubernetes](https://www.krakend.io/blog/krakend-on-kubernetes)
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/linux)
+- [kubectl](https://kubernetes.io/docs/setup/learning-environment/minikube/#interacting-with-your-cluster)
+- [Proxy Issues](https://minikube.sigs.k8s.io/docs/reference/networking/proxy)
